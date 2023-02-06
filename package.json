@@ -8,19 +8,19 @@
   "type": "module",
   "exports": {
     ".": {
-      "require": "./dist/crypto.web.cjs",
-      "import": "./dist/crypto.web.mjs",
-      "types": "./dist/crypto.web.d.ts",
       "node": {
         "require": "./dist/crypto.node.cjs",
         "import": "./dist/crypto.node.mjs",
         "types": "./dist/crypto.node.d.ts"
-      }
+      },
+      "require": "./dist/crypto.web.cjs",
+      "import": "./dist/crypto.web.mjs",
+      "types": "./dist/crypto.web.d.ts"
     }
   },
   "main": "./dist/crypto.node.cjs",
-  "module": "./dist/crypto.web.cjs",
-  "browser": "./dist/crypto.web.cjs",
+  "module": "./dist/crypto.web.mjs",
+  "browser": "./dist/crypto.web.mjs",
   "types": "./dist/crypto.web.d.ts",
   "files": [
     "dist"
