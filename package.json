@@ -18,6 +18,9 @@
       }
     }
   },
+  "main": "./dist/crypto.node.cjs",
+  "module": "./dist/crypto.web.cjs",
+  "browser": "./dist/crypto.web.cjs",
   "types": "./dist/crypto.web.d.ts",
   "files": [
     "dist"
