@@ -8,6 +8,17 @@
   "type": "module",
   "exports": {
     ".": {
+      "browser": "./dist/crypto.web.mjs",
+      "bun": "./dist/crypto.web.mjs",
+      "deno": "./dist/crypto.web.mjs",
+      "edge-light": "./dist/crypto.web.mjs",
+      "edge-routine": "./dist/crypto.web.mjs",
+      "lagon": "./dist/crypto.web.mjs",
+      "netlify": "./dist/crypto.web.mjs",
+      "react-native": "./dist/crypto.web.mjs",
+      "wintercg": "./dist/crypto.web.mjs",
+      "worker": "./dist/crypto.web.mjs",
+      "workerd": "./dist/crypto.web.mjs",
       "node": {
         "require": "./dist/crypto.node.cjs",
         "import": "./dist/crypto.node.mjs",
