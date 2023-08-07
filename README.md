@@ -58,7 +58,7 @@ Published under [MIT License](./LICENSE).
 [npm-version-href]: https://npmjs.com/package/uncrypto
 [npm-downloads-src]: https://img.shields.io/npm/dm/uncrypto?style=flat-square
 [npm-downloads-href]: https://npmjs.com/package/uncrypto
-[github-actions-src]: https://img.shields.io/github/workflow/status/unjs/uncrypto/ci/main?style=flat-square
+[github-actions-src]: https://img.shields.io/github/actions/workflow/status/unjs/uncrypto/ci.yml?branch=main&style=flat-square
 [github-actions-href]: https://github.com/unjs/uncrypto/actions?query=workflow%3Aci
 [codecov-src]: https://img.shields.io/codecov/c/gh/unjs/uncrypto/main?style=flat-square
 [codecov-href]: https://codecov.io/gh/unjs/uncrypto
