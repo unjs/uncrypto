@@ -8,31 +8,36 @@
   "type": "module",
   "exports": {
     ".": {
-      "browser": "./dist/crypto.web.mjs",
-      "bun": "./dist/crypto.web.mjs",
-      "deno": "./dist/crypto.web.mjs",
-      "edge-light": "./dist/crypto.web.mjs",
-      "edge-routine": "./dist/crypto.web.mjs",
-      "lagon": "./dist/crypto.web.mjs",
-      "netlify": "./dist/crypto.web.mjs",
-      "react-native": "./dist/crypto.web.mjs",
-      "wintercg": "./dist/crypto.web.mjs",
-      "worker": "./dist/crypto.web.mjs",
-      "workerd": "./dist/crypto.web.mjs",
+      "browser": "./dist/crypto-web.mjs",
+      "bun": "./dist/crypto-web.mjs",
+      "deno": "./dist/crypto-web.mjs",
+      "edge-light": "./dist/crypto-web.mjs",
+      "edge-routine": "./dist/crypto-web.mjs",
+      "lagon": "./dist/crypto-web.mjs",
+      "netlify": "./dist/crypto-web.mjs",
+      "react-native": "./dist/crypto-web.mjs",
+      "wintercg": "./dist/crypto-web.mjs",
+      "worker": "./dist/crypto-web.mjs",
+      "workerd": "./dist/crypto-web.mjs",
       "node": {
-        "require": "./dist/crypto.node.cjs",
-        "import": "./dist/crypto.node.mjs",
-        "types": "./dist/crypto.node.d.ts"
+        "types": "./dist/crypto-node.d.ts",
+        "import": "./dist/crypto-node.mjs",
+        "require": "./dist/crypto-node.cjs"
       },
-      "require": "./dist/crypto.web.cjs",
-      "import": "./dist/crypto.web.mjs",
-      "types": "./dist/crypto.web.d.ts"
+      "require": "./dist/crypto-web.cjs",
+      "import": "./dist/crypto-web.mjs",
+      "types": "./dist/crypto-web.d.ts"
+    },
+    "./jwt": {
+      "types": "./dist/jwt.d.ts",
+      "import": "./dist/jwt.mjs",
+      "require": "./dist/jwt.cjs"
     }
   },
-  "main": "./dist/crypto.node.cjs",
-  "module": "./dist/crypto.web.mjs",
-  "browser": "./dist/crypto.web.mjs",
-  "types": "./dist/crypto.web.d.ts",
+  "main": "./dist/crypto-node.cjs",
+  "module": "./dist/crypto-web.mjs",
+  "browser": "./dist/crypto-web.mjs",
+  "types": "./dist/crypto-web.d.ts",
   "files": [
     "dist"
   ],
