@@ -45,9 +45,14 @@ export async function verifyJWT(options: VerifyJWTOptions) {
     throw new Error("Invalid JWT signature");
   }
 
-  const decodedPayload = JSON.parse(
-    decodeFromBase64Url(payload)
-  ) as JWTRegisteredClaims;
+  let decodedPayload: JWTRegisteredClaims;
+
+  try {
+    decodedPayload = JSON.parse(decodeFromBase64Url(payload));
+  } catch {
+    throw new Error("Invalid JWT payload");
+  }
+
   const now = Math.floor(Date.now() / 1000);
 
   if (
