@@ -30,7 +30,7 @@ export async function verifyJWT({
   /** @default 'SHA-256' */
   hashMethod?: string;
 }) {
-  const [header, payload, signature] = token.split(".");
+  const [header, payload, signature] = String(token).split(".");
   const key = await importKey({
     secret,
     usage: "verify",

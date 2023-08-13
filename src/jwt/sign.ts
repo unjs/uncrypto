@@ -14,7 +14,7 @@ const headerAlgMap: Record<string, string> = {
 };
 
 export async function signJWT<
-  T extends Record<string, any> = Record<string, any>
+  T extends Record<string, unknown> = Record<string, unknown>
 >({
   payload = {} as T,
   secret,
