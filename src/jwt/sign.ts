@@ -45,7 +45,7 @@ export async function signJWT<
   });
   const header = {
     typ: "JWT",
-    alg: `${signatureMap[signatureMethod]}${hashMethod.replace("-", "")}`,
+    alg: `${signatureMap[signatureMethod]}${hashMethod.split("-")[1]}`,
   };
   const iat = Math.floor(Date.now() / 1000);
   const exp = iat + expires * 24 * 60 * 60;
