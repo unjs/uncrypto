@@ -5,7 +5,7 @@
 [![Github Actions][github-actions-src]][github-actions-href]
 [![Codecov][codecov-src]][codecov-href]
 
-This library provides a single api to use [web-crypto](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) and [Subtle Crypto](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto) in both Node.js using [Crypto Module](https://nodejs.org/api/crypto.html#crypto) and Web targets using [Web Crypto API](https://nodejs.org/api/crypto.html#crypto) using [Conditional Exports](https://nodejs.org/api/packages.html#conditional-exports).
+This library provides a single API to use [web-crypto](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) and [Subtle Crypto](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto) in both Node.js using [Crypto Module](https://nodejs.org/api/crypto.html#crypto) and Web targets using [Web Crypto API](https://nodejs.org/api/crypto.html#crypto) using [Conditional Exports](https://nodejs.org/api/packages.html#conditional-exports).
 
 **Requirements:**
 
@@ -25,7 +25,7 @@ npm install uncrypto
 yarn add uncrypto
 
 # pnpm
-pnpm install uncrypto
+pnpm add uncrypto
 ```
 
 Import:
@@ -36,6 +36,16 @@ import { subtle, randomUUID, getRandomValues } from "uncrypto";
 
 // CommonJS
 const { subtle, randomUUID, getRandomValues } = require("uncrypto");
+```
+
+To use JWT utilities, import from `uncrypto/jwt`:
+
+```js
+// ESM
+import { decodeJWT, signJWT, verifyJWT } from "uncrypto/jwt";
+
+// CommonJS
+const { decodeJWT, signJWT, verifyJWT } = require("uncrypto/jwt");
 ```
 
 ## Development
