@@ -49,3 +49,32 @@ export interface JWTRegisteredClaims {
    */
   iat?: number;
 }
+
+export interface SignJWTOptions<T extends Record<string, unknown>> {
+  payload?: T;
+  secret: string;
+  issuer: string;
+  audience: string;
+  /**
+   * Expiration time in days
+   * @default 30
+   */
+  expires?: number;
+  /** @default 'HMAC' */
+  signatureMethod?: string;
+  /** @default 'SHA-256' */
+  hashMethod?: string;
+}
+
+export interface VerifyJWTOptions {
+  token: string;
+  secret: string;
+  issuer: string;
+  audience: string;
+  /** @default 60 */
+  leeway?: number;
+  /** @default 'HMAC' */
+  signatureMethod?: string;
+  /** @default 'SHA-256' */
+  hashMethod?: string;
+}

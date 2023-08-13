@@ -4,8 +4,8 @@ import {
   createSignature,
   encodeToBase64Url,
   importKey,
-} from "./utils";
-import type { JWTRegisteredClaims } from "./types";
+} from "./_utils";
+import type { JWTRegisteredClaims, SignJWTOptions } from "./types";
 
 const headerAlgMap: Record<string, string> = {
   HMAC: "HS",
@@ -15,34 +15,29 @@ const headerAlgMap: Record<string, string> = {
 
 export async function signJWT<
   T extends Record<string, unknown> = Record<string, unknown>
->({
-  payload = {} as T,
-  secret,
-  issuer,
-  audience,
-  expires = 30,
-  signatureMethod = DEFAULT_SIGNATURE_METHOD,
-  hashMethod = DEFAULT_HASH_METHODS,
-}: {
-  payload?: T;
-  secret: string;
-  issuer: string;
-  audience: string;
-  /**
-   * Expiration time in days
-   * @default 30
-   */
-  expires?: number;
-  /** @default 'HMAC' */
-  signatureMethod?: string;
-  /** @default 'SHA-256' */
-  hashMethod?: string;
-}) {
+>(options: SignJWTOptions<T>) {
+  const {
+    payload,
+    secret,
+    issuer,
+    audience,
+    expires,
+    signatureMethod,
+    hashMethod,
+  } = {
+    payload: {} as T,
+    expires: 30,
+    signatureMethod: DEFAULT_SIGNATURE_METHOD,
+    hashMethod: DEFAULT_HASH_METHODS,
+    ...options,
+  };
+
   const key = await importKey({
     secret,
     name: signatureMethod,
     hash: hashMethod,
   });
+
   const header = {
     typ: "JWT",
     alg: `${headerAlgMap[signatureMethod]}${hashMethod.split("-")[1]}`,
