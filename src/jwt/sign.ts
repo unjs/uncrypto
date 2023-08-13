@@ -7,7 +7,7 @@ import {
 } from "./utils";
 import type { JWTRegisteredClaims } from "./types";
 
-const signatureMap: Record<string, string> = {
+const headerAlgMap: Record<string, string> = {
   HMAC: "HS",
   RSA: "RS",
   ECDSA: "ES",
@@ -45,7 +45,7 @@ export async function signJWT<
   });
   const header = {
     typ: "JWT",
-    alg: `${signatureMap[signatureMethod]}${hashMethod.split("-")[1]}`,
+    alg: `${headerAlgMap[signatureMethod]}${hashMethod.split("-")[1]}`,
   };
   const iat = Math.floor(Date.now() / 1000);
   const exp = iat + expires * 24 * 60 * 60;
