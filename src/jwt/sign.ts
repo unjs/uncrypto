@@ -17,20 +17,14 @@ export async function signJWT<
   T extends Record<string, unknown> = Record<string, unknown>
 >(options: SignJWTOptions<T>) {
   const {
-    payload,
+    payload = {} as T,
     secret,
     issuer,
     audience,
-    expires,
-    signatureMethod,
-    hashMethod,
-  } = {
-    payload: {} as T,
-    expires: 30,
-    signatureMethod: DEFAULT_SIGNATURE_METHOD,
-    hashMethod: DEFAULT_HASH_METHODS,
-    ...options,
-  };
+    expires = 30,
+    signatureMethod = DEFAULT_SIGNATURE_METHOD,
+    hashMethod = DEFAULT_HASH_METHODS,
+  } = { ...options };
 
   const key = await importKey({
     secret,

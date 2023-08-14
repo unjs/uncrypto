@@ -16,15 +16,10 @@ export async function verifyJWT(options: VerifyJWTOptions) {
     secret,
     issuer,
     audience,
-    leeway,
-    signatureMethod,
-    hashMethod,
-  } = {
-    leeway: 60,
-    signatureMethod: DEFAULT_SIGNATURE_METHOD,
-    hashMethod: DEFAULT_HASH_METHODS,
-    ...options,
-  };
+    leeway = 60,
+    signatureMethod = DEFAULT_SIGNATURE_METHOD,
+    hashMethod = DEFAULT_HASH_METHODS,
+  } = { ...options };
 
   const [header, payload, signature] = String(token).split(".");
   const key = await importKey({
