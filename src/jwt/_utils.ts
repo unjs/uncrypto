@@ -1,4 +1,4 @@
-// @ts-expect-error: will resolve at runtime
+// @ts-expect-error: use export conditions
 import { subtle } from "uncrypto";
 
 export const DEFAULT_SIGNATURE_METHOD = "HMAC";
