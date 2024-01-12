@@ -1,8 +1,7 @@
-import { getRandomValues } from "uncrypto";
-
 import { decode, encode } from "./base32.js";
 import { AlgoEnum, createHmac } from "./hmac.js";
 import { bigEndian64 } from "./endian";
+import { getRandomValues } from "uncrypto";
 
 interface TOTPURLOptions {
   company: string;
@@ -35,7 +34,7 @@ export async function totp(
   const key = decode(secret);
   const buff = bigEndian64(BigInt(now));
   const hmac = await createHmac(_options.algorithm, key, buff);
-  const offset = hmac[hmac.length - 1] & 0xf;
+  const offset = hmac.at(-1) & 0xf;
   const truncatedHash = hmac.subarray(offset, offset + 4);
   const otp = (
     (truncatedHash.readInt32BE() & 0x7f_ff_ff_ff) %
@@ -61,7 +60,9 @@ export async function isTOTPValid(
   for (let index = -2; index < 3; index += 1) {
     const fromSys = await totp(secret, Date.now() / 1000 + index, _options);
     const valid = fromSys === totpToken;
-    if (valid) return true;
+    if (valid) {
+      return true;
+    }
   }
   return false;
 }

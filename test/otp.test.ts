@@ -12,16 +12,16 @@ describe("uncrypto:otp", () => {
     const secret = generateTOTPSecret();
     const period = 60;
     const opts = {
-      period: period,
+      period,
     };
     const otp = await totp(secret, undefined, opts);
-    expect(await isTOTPValid(secret, otp, opts)).is.true;
+    expect(await isTOTPValid(secret, otp, opts)).toBe(true);
   });
 
   it("static is valid", async () => {
     const secret = "JFLVYRQGJ5ZFOLSYO5HVOWIZGAYHOCTEGNLE2JYMNAMTCET3A5VQ====";
-    const d = 1704875845134;
+    const d = 1_704_875_845_134;
     const otp = await totp(secret, d / 1000);
-    expect(otp).is.eq("" + 881718);
+    expect(otp).is.eq("" + 881_718);
   });
 });

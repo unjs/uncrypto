@@ -47,23 +47,23 @@ const base32alphaMapDecode = Object.fromEntries(
 );
 
 export const encode = (str: string) => {
-  const splits = str.split("");
+  const splits = [...str];
 
-  if (!splits.length) {
+  if (splits.length === 0) {
     return "";
   }
 
-  let binaryGroup = [];
+  const binaryGroup = [];
   let bitText = "";
 
-  splits.forEach((c) => {
+  for (const c of splits) {
     bitText += toBinary(c);
 
-    if (bitText.length == 40) {
+    if (bitText.length === 40) {
       binaryGroup.push(bitText);
       bitText = "";
     }
-  });
+  }
 
   if (bitText.length > 0) {
     binaryGroup.push(bitText);
@@ -72,33 +72,33 @@ export const encode = (str: string) => {
 
   return binaryGroup
     .map((x) => {
-      let fiveBitGrouping = [];
+      const fiveBitGrouping = [];
       let lex = "";
-      let bitOn = x;
+      const bitOn = x;
 
-      bitOn.split("").forEach((d) => {
+      for (const d of bitOn) {
         lex += d;
-        if (lex.length == 5) {
+        if (lex.length === 5) {
           fiveBitGrouping.push(lex);
           lex = "";
         }
-      });
+      }
 
       if (lex.length > 0) {
         fiveBitGrouping.push(lex.padEnd(5, "0"));
         lex = "";
       }
 
-      let paddedArray = Array.from(fiveBitGrouping);
+      let paddedArray = [...fiveBitGrouping];
       paddedArray.length = 8;
       paddedArray = paddedArray.fill("-1", fiveBitGrouping.length, 8);
 
       return paddedArray
         .map((f) => {
-          if (f == "-1") {
+          if (f === "-1") {
             return pad;
           }
-          const key = parseInt(f, 2).toString(
+          const key = Number.parseInt(f, 2).toString(
             10
           ) as unknown as keyof typeof base32alphaMap;
           return base32alphaMap[key];
@@ -109,24 +109,25 @@ export const encode = (str: string) => {
 };
 
 export const decode = (str: string) => {
-  const overallBinary = str
-    .split("")
+  const overallBinary = [...str]
     .map((x) => {
       if (x === pad) {
         return "00000";
       }
       const d = base32alphaMapDecode[x];
-      const binary = parseInt(d, 10).toString(2);
+      const binary = Number.parseInt(d, 10).toString(2);
       return binary.padStart(5, "0");
     })
     .join("");
 
-  const characterBitGrouping = chunk(overallBinary.split(""), 8);
+  const characterBitGrouping = chunk([...overallBinary], 8);
   return characterBitGrouping
     .map((x) => {
       const binaryL = x.join("");
-      const str = String.fromCharCode(+parseInt(binaryL, 2).toString(10));
-      return str.replace("\x00", "");
+      const str = String.fromCodePoint(
+        +Number.parseInt(binaryL, 2).toString(10)
+      );
+      return str.replace("\u0000", "");
     })
     .join("");
 
@@ -134,6 +135,8 @@ export const decode = (str: string) => {
 };
 
 const toBinary = (char: string, padLimit = 8) => {
+  // needs the ascii value instead of unicode value
+  // eslint-disable-next-line unicorn/prefer-code-point
   const binary = String(char).charCodeAt(0).toString(2);
   return binary.padStart(padLimit, "0");
 };
@@ -144,7 +147,11 @@ const chunk = <T>(
   cache: Array<Array<T>> = []
 ) => {
   const tmp = [...arr];
-  if (chunkSize <= 0) return cache;
-  while (tmp.length) cache.push(tmp.splice(0, chunkSize));
+  if (chunkSize <= 0) {
+    return cache;
+  }
+  while (tmp.length > 0) {
+    cache.push(tmp.splice(0, chunkSize));
+  }
   return cache;
 };
