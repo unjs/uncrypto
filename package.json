@@ -27,6 +27,27 @@
       "require": "./dist/crypto.web.cjs",
       "import": "./dist/crypto.web.mjs",
       "types": "./dist/crypto.web.d.ts"
+    },
+    "./otp": {
+      "browser": "./dist/otp.mjs",
+      "bun": "./dist/otp.mjs",
+      "deno": "./dist/otp.mjs",
+      "edge-light": "./dist/otp.mjs",
+      "edge-routine": "./dist/otp.mjs",
+      "lagon": "./dist/otp.mjs",
+      "netlify": "./dist/otp.mjs",
+      "react-native": "./dist/otp.mjs",
+      "wintercg": "./dist/otp.mjs",
+      "worker": "./dist/otp.mjs",
+      "workerd": "./dist/otp.mjs",
+      "node": {
+        "require": "./dist/otp.cjs",
+        "import": "./dist/otp.mjs",
+        "types": "./dist/otp.d.ts"
+      },
+      "require": "./dist/otp.cjs",
+      "import": "./dist/otp.mjs",
+      "types": "./dist/otp.d.ts"
     }
   },
   "main": "./dist/crypto.node.cjs",
@@ -56,5 +77,10 @@
     "unbuild": "^1.2.1",
     "vitest": "^0.34.5"
   },
-  "packageManager": "pnpm@8.8.0"
+  "packageManager": "pnpm@8.8.0",
+  "unbuild": {
+    "externals": [
+      "uncrypto"
+    ]
+  }
 }
