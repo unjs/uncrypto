@@ -13,7 +13,6 @@
       "deno": "./dist/crypto.web.mjs",
       "edge-light": "./dist/crypto.web.mjs",
       "edge-routine": "./dist/crypto.web.mjs",
-      "lagon": "./dist/crypto.web.mjs",
       "netlify": "./dist/crypto.web.mjs",
       "react-native": "./dist/crypto.web.mjs",
       "wintercg": "./dist/crypto.web.mjs",
