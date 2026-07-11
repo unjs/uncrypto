@@ -45,7 +45,7 @@
     "test": "pnpm lint && vitest run --coverage"
   },
   "devDependencies": {
-    "@types/node": "^20.11.25",
+    "@types/node": "^24.13.3",
     "@vitest/coverage-v8": "^0.34.6",
     "changelogen": "^0.5.5",
     "eslint": "^8.57.0",
